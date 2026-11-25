@@ -18,7 +18,7 @@ Developed and tested on a Pixel Watch 4 (LTE) with its own phone number.
 
 - SMS only: no MMS, RCS or group messaging
 - Delivery reports depend on your carrier, and some carriers never send them
-- Only a debug build is provided, and it is meant to be sideloaded
+- Prebuilt binaries are not provided, so build the app yourself
 
 ## Requirements
 
@@ -46,10 +46,20 @@ The APK is written to `app/build/outputs/apk/debug/app-debug.apk`.
 
 Allow the contacts and notification permissions when the app asks for them.
 
+## Release build
+
+1. Create an upload keystore once, for example with `keytool -genkeypair -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000`.
+2. Copy `keystore.properties.example` to `keystore.properties` and fill in your values.
+3. Run `./gradlew bundleRelease` for the Play Store, or `./gradlew assembleRelease` for a signed APK.
+
+The keystore and `keystore.properties` are ignored by git, so keep a backup of them somewhere safe.
+Without `keystore.properties` the release build is unsigned.
+
 ## Privacy
 
 The app has no network access and no analytics.
 Messages stay in the watch's SMS database, and exports are written only where you ask.
+See [PRIVACY.md](PRIVACY.md).
 
 ## License
 
