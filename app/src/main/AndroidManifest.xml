@@ -12,7 +12,11 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
-    <application android:label="Wear SMS" android:theme="@android:style/Theme.DeviceDefault">
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:label="Wear SMS"
+        android:theme="@android:style/Theme.DeviceDefault">
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,6 +52,10 @@
                 <data android:mimeType="application/vnd.wap.mms-message" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".SentStatusReceiver" android:exported="false" />
+        <receiver android:name=".DeliveryStatusReceiver" android:exported="false" />
+        <receiver android:name=".ReplyReceiver" android:exported="false" />
 
         <service
             android:name=".RespondViaMessageService"
